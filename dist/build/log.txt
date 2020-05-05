@@ -1,0 +1,27 @@
+Building components ....
+Searching for syntax errors.....
+[UnclosedTags Success] =>components/templates/edit-comp.html
+[Time] => find unclosedTags => 0.005 s
+Running compilerule ...
+[Time] => Convert Lyte syntax => 0 s
+Building models ..............
+
+Building mixins .....
+[Time] : copyAppDir =>0.073 s
+[Time] => 0.002 s
+================= _super call of model completed =======================
+Callback to templateProcessing function initated
+total time taken 0.099s
+Generating dist components...
+
+[Time] => components completed : 1.152 s
+========== Components compiled ==========
+Consolidated file created in the dist/app.js
+
+finish the build
+[Watch] => file changed components/javascript/sai-comp.js calling buildComponents
+[Watch] Running componentCopy rule
+[Watch] Dist changes done
+========== Components compiled ==========
+Consolidated file created in the dist/app.js
+

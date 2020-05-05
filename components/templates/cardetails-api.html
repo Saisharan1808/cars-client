@@ -1,0 +1,39 @@
+<template tag-name="cardetails-api">
+	<h1 align="center">Car Information</h1>
+	<lyte-table id="detailsHeading" lt-prop-yield = true lt-prop-border = true lt-prop-dual-resize=true >
+		<lyte-table-structure>
+			<lyte-tr>
+				<lyte-th resize="enable">car-no</lyte-th>
+				<lyte-th resize="enable">Model-name</lyte-th>
+				<lyte-th resize="enable">Passenger-Airbag</lyte-th>
+				<lyte-th resize="enable">EngineType</lyte-th>
+				<lyte-th resize="enable">TransmissionType</lyte-th>
+				<lyte-th resize="enable">Rupees</lyte-th>
+				<lyte-th resize="enable">Change</lyte-th>
+			</lyte-tr>
+			 
+			 <lyte-tr>
+			 	<lyte-td class="{{if(details.EngineType=='petrol','black','white')}}">{{details.id}}</lyte-td>
+			 	<lyte-td class="{{if(details.EngineType=='petrol','black','white')}}">{{details.Model}}</lyte-td>
+			 	<lyte-td class="{{if(details.EngineType=='petrol','black','white')}}">{{details.PassengerAirbag}}</lyte-td>
+			 	<lyte-td class="{{if(details.EngineType=='petrol','black','white')}}">{{details.EngineType}}</lyte-td>
+			 	<lyte-td class="{{if(details.EngineType=='petrol','black','white')}}">{{details.TransmissionType}}</lyte-td>
+			 	<lyte-td class="{{if(details.EngineType=='petrol','black','white')}}">{{details.rupee}}</lyte-td>
+			 	<lyte-td class="{{if(details.EngineType=='petrol','black','white')}}" onclick='{{action("callingModal",this,item.id)}}'>Edit</lyte-td>
+			 </lyte-tr>
+		 
+
+		  	</lyte-table-structure>
+	</lyte-table>
+	<lyte-button class="btn1" lt-prop-appearance="primary" onclick='{{action("backPage")}}'> 
+	  <template is="registerYield" yield-name="text"> 
+	  	  Back 
+	  </template> 
+	</lyte-button> 
+
+
+		<%if(editcomp){%>
+			<edit-comp cars={{details}} ncars={{ncars}} indexvalueforedit={{details.id}} ></edit-comp>
+		<%}%> 
+
+</template>

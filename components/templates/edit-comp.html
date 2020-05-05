@@ -1,0 +1,40 @@
+<template tag-name="edit-comp">
+	<lyte-modal id="modalElem" lt-prop-height='auto' lt-prop-dimmer='{"opacity":".3","color":"#000000"}' lt-prop-transition='{"animation":"fadeIn"}'>
+	<template is='registerYield' yield-name='modal'>
+		<lyte-modal-header class="title"></lyte-modal-header>
+		<lyte-modal-content >
+		
+				<lyte-input class='inp1' lt-prop-value="{{lbind(ncars.Model)}}" lt-prop-type='text' lt-prop-label='Name:' lt-prop-autocomplete='on' lt-prop-autofocus='true' lt-prop-placeholder='Enter car name' lt-prop-direction='vertical' lt-prop-appearance='box'></lyte-input><br><br>
+
+				<lyte-input class='inp2' lt-prop-value="{{lbind(ncars.PassengerAirbag)}}" lt-prop-type='text' lt-prop-label='AirBag:' lt-prop-autocomplete='on' lt-prop-autofocus='true' lt-prop-placeholder='Enter No-AirBag' lt-prop-direction='vertical' lt-prop-appearance='box'></lyte-input><br><br>
+
+				
+
+				<div>EngineType:</div><br>
+				<lyte-radiobutton class='rb1' lt-prop-checked="true" lt-prop-name="default1" lt-prop-value="petrol" lt-prop-label="Petrol"> </lyte-radiobutton> 
+				
+				<lyte-radiobutton class='rb2' lt-prop-name="default1"  lt-prop-value="diesel" lt-prop-label="Diesel"> </lyte-radiobutton> <br><br>
+
+				<div> TransmissionType:</div><br>
+				
+				<lyte-radiobutton lt-prop-checked="true" class='rb3' lt-prop-name="default2"  lt-prop-value="Auto" lt-prop-label="Auto"> </lyte-radiobutton> 
+				
+				<lyte-radiobutton class='rb4'  lt-prop-name="default2" lt-prop-value="Manual" lt-prop-label="Manual"> </lyte-radiobutton> <br><br>
+				   
+			
+
+				<lyte-input class='inp3' lt-prop-value="{{lbind(ncars.rupee)}}" lt-prop-type='text' lt-prop-label='Price:' lt-prop-autocomplete='on' lt-prop-autofocus='true' lt-prop-placeholder='Enter Price' lt-prop-direction='vertical' lt-prop-appearance='box'></lyte-input><br><br>   
+				
+		</lyte-modal-content>
+
+		<lyte-modal-footer >
+			<lyte-button lt-prop-appearance='primary' class='right' onclick='{{action("decisionCallingForEditOrAdd")}}'>
+				<template is='registerYield'  yield-name='text'></template>
+			</lyte-button>
+			<lyte-button lt-prop-appearance='primary' onclick='{{action("callingCancleModal")}}'>
+				<template is='registerYield' yield-name='text'>Cancel</template>
+			</lyte-button>
+		</lyte-modal-footer>
+	</template>
+</lyte-modal>
+</template>

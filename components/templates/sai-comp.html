@@ -1,0 +1,93 @@
+<template tag-name="sai-comp">
+<!-- commit -->
+	<h1 align="center">Availabe product</h1>
+	<lyte-table lt-prop-yield = true lt-prop-border = true lt-prop-dual-resize=true >
+		<lyte-table-structure>
+			<lyte-tr>
+				<lyte-th resize="enable">car-no</lyte-th>
+				<lyte-th resize="enable">Model-name</lyte-th>
+				<lyte-th resize="enable">Passenger-Airbag</lyte-th>
+				<lyte-th resize="enable">EngineType</lyte-th>
+				<lyte-th resize="enable">TransmissionType</lyte-th>
+				<lyte-th resize="enable">Rupees</lyte-th>
+				<lyte-th resize="enable">Change</lyte-th>
+				<lyte-th resize="enable">Delete</lyte-th>
+			</lyte-tr>
+		<%cars.forEach(function(item) { %> 	 
+			 <lyte-tr>
+			 	<lyte-td class="{{if(item.EngineType=='petrol','black','white')}}" onclick='{{action("nextpage",item)}}'>{{item.id}}</lyte-td>
+			 	<lyte-td class="{{if(item.EngineType=='petrol','black','white')}} cursorPoint" onclick='{{action("nextpage",item)}}'>{{item.Model}}</lyte-td>
+			 	<lyte-td class="{{if(item.EngineType=='petrol','black','white')}}" onclick='{{action("nextpage",item)}}'>{{item.PassengerAirbag}}</lyte-td>
+			 	<lyte-td class="{{if(item.EngineType=='petrol','black','white')}}" onclick='{{action("nextpage",item)}}'>{{item.EngineType}}</lyte-td>
+			 	<lyte-td class="{{if(item.EngineType=='petrol','black','white')}}" onclick='{{action("nextpage",item)}}'>{{item.TransmissionType}}</lyte-td>
+			 	<lyte-td class="{{if(item.EngineType=='petrol','black','white')}}" onclick='{{action("nextpage",item)}}'>{{item.rupee}}</lyte-td>
+			 	<lyte-td  class="{{if(item.EngineType=='petrol','black','white')}} btn2" onclick='{{action("callingModal",this,item.id)}}'>Edit</lyte-td>
+			 	<lyte-td class="{{if(item.EngineType=='petrol','black','white')}} btn2"><div class="D_{{index}}"onclick="{{action('delete',item.id)}}">​❌</div></lyte-td>
+			  </lyte-tr>
+		  <% }) %>
+
+		  	</lyte-table-structure>
+	</lyte-table>
+
+
+<lyte-button class='btn1' onclick='{{action("callingModal",this)}}' lt-prop-appearance="primary"> 
+	  <template is="registerYield" yield-name="text"> 
+	  	  AddCar 
+	  </template> 
+	</lyte-button> 
+	
+
+ 
+	<!-- <lyte-modal id="modalElem" lt-prop-height='auto' lt-prop-dimmer='{"opacity":".3","color":"#000000"}' lt-prop-transition='{"animation":"fadeIn"}'>
+	<template is='registerYield' yield-name='modal'>
+		<lyte-modal-header class="title"></lyte-modal-header>
+		<lyte-modal-content >
+		
+				<lyte-input class='inp1' lt-prop-value="{{lbind(ncars.Model)}}" lt-prop-type='text' lt-prop-label='Name:' lt-prop-autocomplete='on' lt-prop-autofocus='true' lt-prop-placeholder='Enter car name' lt-prop-direction='vertical' lt-prop-appearance='box'></lyte-input><br><br>
+
+				<lyte-input class='inp2' lt-prop-value="{{lbind(ncars.PassengerAirbag)}}" lt-prop-type='text' lt-prop-label='AirBag:' lt-prop-autocomplete='on' lt-prop-autofocus='true' lt-prop-placeholder='Enter No-AirBag' lt-prop-direction='vertical' lt-prop-appearance='box'></lyte-input><br><br>
+
+				
+
+				<div>EngineType:</div><br>
+				<lyte-radiobutton class='rb1' lt-prop-checked="true" lt-prop-name="default1" lt-prop-value="petrol" lt-prop-label="Petrol"> </lyte-radiobutton> 
+				
+				<lyte-radiobutton class='rb2' lt-prop-name="default1"  lt-prop-value="diesel" lt-prop-label="Diesel"> </lyte-radiobutton> <br><br>
+
+				<div> TransmissionType:</div><br>
+				
+				<lyte-radiobutton lt-prop-checked="true" class='rb3' lt-prop-name="default2"  lt-prop-value="Auto" lt-prop-label="Auto"> </lyte-radiobutton> 
+				
+				<lyte-radiobutton class='rb4'  lt-prop-name="default2" lt-prop-value="Manual" lt-prop-label="Manual"> </lyte-radiobutton> <br><br>
+				   
+			
+
+				<lyte-input class='inp3' lt-prop-value="{{lbind(ncars.rupee)}}" lt-prop-type='text' lt-prop-label='Price:' lt-prop-autocomplete='on' lt-prop-autofocus='true' lt-prop-placeholder='Enter Price' lt-prop-direction='vertical' lt-prop-appearance='box'></lyte-input><br><br>   
+				
+		</lyte-modal-content>
+
+		<lyte-modal-footer >
+			<lyte-button lt-prop-appearance='primary' class='right' onclick='{{action("decisionCallingForEditOrAdd")}}'>
+				<template is='registerYield'  yield-name='text'></template>
+			</lyte-button>
+			<lyte-button lt-prop-appearance='primary' onclick='{{action("callingCancleModal")}}'>
+				<template is='registerYield' yield-name='text'>Cancel</template>
+			</lyte-button>
+		</lyte-modal-footer>
+	</template>
+</lyte-modal> -->
+		
+		<%if(editcomp){%>
+				<edit-comp cars={{cars}} ncars={{ncars}} indexvalueforedit={{indexValueForEdit}}></edit-comp>
+
+		<%}%> 
+
+		<lyte-alert lt-prop = '{"buttons" : [{"type":"accept","text":"Ok","appearance":"success"},{"type":"reject","text":"Cancel","appearance":"failure"}]}'lt-prop-show-close-button='false' lt-prop-close-on-escape='false' id="confirmToDelete" lt-prop-yield='true' lt-prop-top='40px' lt-prop-animation='zoomIn'> 
+		  <template is='registerYield' yield-name='alert'> 
+		  	  <lyte-alert-header > Are you sure? </lyte-alert-header> 
+		  	  <lyte-alert-content >You want to delete this content.</lyte-alert-content> 
+		  </template> 
+		</lyte-alert>
+
+
+</template>
